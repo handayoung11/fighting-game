@@ -129,7 +129,6 @@ function animate() {
   c.fillRect(0, 0, canvas.width, canvas.height);
   player.update();
   enemy.update();
-
   //player movement
   if (keys.a.pressed && (player.lastKey === "a" || player.velocity.x === 0)) {
     player.velocity.x = -5;
@@ -207,7 +206,7 @@ window.addEventListener("keydown", (event) => {
       enemy.velocity.y = -20;
       break;
     case "ArrowDown":
-      enemy.isAttacking = true;
+      enemy.attack();
       break;
   }
 });
