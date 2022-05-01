@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Fighthing Game</title>
     <style>
-        * {
-            box-sizing: border-box;
-        }
+      * {
+        box-sizing: border-box;
+      }
     </style>
   </head>
   <body>
@@ -25,7 +25,29 @@
         "
       >
         <!-- player health -->
-        <div style="background-color: yellow; height: 30px; width: 100%"></div>
+        <div
+          style="
+            position: relative;
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+          "
+        >
+          <div
+            style="background-color: yellow; height: 30px; width: 100%"
+          ></div>
+          <div
+            id="playerHealth"
+            style="
+              position: absolute;
+              background-color: blue;
+              top: 0;
+              right: 0;
+              bottom: 0;
+              width: 100%;
+            "
+          ></div>
+        </div>
         <!-- timer -->
         <div
           style="
@@ -36,7 +58,20 @@
           "
         ></div>
         <!-- enemy health -->
-        <div id="enemyHealth" style="background-color: yellow; height: 30px; width: 100%"></div>
+        <div style="position: relative; width: 100%">
+          <div style="background-color: yellow; height: 30px"></div>
+          <div
+            id="enemyHealth"
+            style="
+              position: absolute;
+              background-color: blue;
+              top: 0;
+              left: 0;
+              right: 0;
+              bottom: 0;
+            "
+          ></div>
+        </div>
       </div>
       <canvas></canvas>
     </div>
