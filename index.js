@@ -124,6 +124,16 @@ function rectangluarCollision({ rec1, rec2 }) {
   );
 }
 
+let timer = 10;
+function decreaseTimeer() {
+  if (timer >= 0) {
+    setTimeout(decreaseTimeer, 1000);
+    document.querySelector('#timer').innerHTML = timer;
+    timer--;
+  }
+}
+decreaseTimeer();
+
 function animate() {
   window.requestAnimationFrame(animate);
   c.fillStyle = "black";
@@ -167,7 +177,7 @@ function animate() {
   ) {
     player.isAttacking = false;
     enemy.health -= 20;
-    document.querySelector('#enemyHealth').style.width = enemy.health + '%';
+    document.querySelector("#enemyHealth").style.width = enemy.health + "%";
   }
 
   if (
@@ -176,7 +186,7 @@ function animate() {
   ) {
     enemy.isAttacking = false;
     player.health -= 20;
-    document.querySelector('#playerHealth').style.width = player.health + '%';
+    document.querySelector("#playerHealth").style.width = player.health + "%";
   }
 }
 
@@ -193,8 +203,8 @@ window.addEventListener("keydown", (event) => {
       player.lastKey = "d";
       break;
     case "w":
-      if(player.position.y + player.height == canvas.height)
-      player.velocity.y = -20;
+      if (player.position.y + player.height == canvas.height)
+        player.velocity.y = -20;
       break;
 
     //enemy event
@@ -207,7 +217,7 @@ window.addEventListener("keydown", (event) => {
       enemy.lastKey = "ArrowLeft";
       break;
     case "ArrowUp":
-      if(enemy.position.y + enemy.height == canvas.height)
+      if (enemy.position.y + enemy.height == canvas.height)
         enemy.velocity.y = -20;
       break;
     case "ArrowDown":
