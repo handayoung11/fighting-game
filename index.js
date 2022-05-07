@@ -3,6 +3,7 @@ const c = canvas.getContext("2d");
 
 canvas.width = 1024;
 canvas.height = 576;
+const ground = canvas.height - 96;
 
 c.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -65,10 +66,11 @@ decreaseTimeer();
 
 function animate() {
   window.requestAnimationFrame(animate);
-  c.fillStyle = "black";
-  c.fillRect(0, 0, canvas.width, canvas.height);
+  
+  background.update();
   player.update();
   enemy.update();
+
   //player movement
   if (keys.a.pressed && (player.lastKey === "a" || player.velocity.x === 0)) {
     player.velocity.x = -5;
@@ -136,7 +138,7 @@ window.addEventListener("keydown", (event) => {
       player.lastKey = "d";
       break;
     case "w":
-      if (player.position.y + player.height == canvas.height)
+      if (player.position.y + player.height == ground)
         player.velocity.y = -20;
       break;
 
@@ -150,7 +152,7 @@ window.addEventListener("keydown", (event) => {
       enemy.lastKey = "ArrowLeft";
       break;
     case "ArrowUp":
-      if (enemy.position.y + enemy.height == canvas.height)
+      if (enemy.position.y + enemy.height == ground)
         enemy.velocity.y = -20;
       break;
     case "ArrowDown":

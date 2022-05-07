@@ -57,13 +57,13 @@ class Fighter {
     this.attackBox.position.x = this.position.x + this.attackBox.offset.x;
     this.attackBox.position.y = this.position.y;
 
-    if (this.position.y + this.height + this.velocity.y >= canvas.height) {
+    if (this.position.y + this.height + this.velocity.y >= ground) {
       this.toEarth();
     } else this.velocity.y += gravity;
   }
 
   toEarth() {
-    this.position.y = canvas.height - this.height;
+    this.position.y = ground - this.height;
     this.velocity.y = 0;
   }
 
