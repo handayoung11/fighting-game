@@ -16,6 +16,16 @@ const background = new Sprite({
   },
   imageSrc: "./img/background.png",
 });
+const shop = new Sprite({
+  position: {
+    x: 600,
+    y: 128,
+  },
+  imageSrc: "./img/shop.png",
+  scale: 2.75,
+  framesMax: 6,
+});
+
 const player = new Fighter({
   position: {
     x: 0,
@@ -66,8 +76,9 @@ decreaseTimeer();
 
 function animate() {
   window.requestAnimationFrame(animate);
-  
+
   background.update();
+  shop.update();
   player.update();
   enemy.update();
 
@@ -138,8 +149,7 @@ window.addEventListener("keydown", (event) => {
       player.lastKey = "d";
       break;
     case "w":
-      if (player.position.y + player.height == ground)
-        player.velocity.y = -20;
+      if (player.position.y + player.height == ground) player.velocity.y = -20;
       break;
 
     //enemy event
@@ -152,8 +162,7 @@ window.addEventListener("keydown", (event) => {
       enemy.lastKey = "ArrowLeft";
       break;
     case "ArrowUp":
-      if (enemy.position.y + enemy.height == ground)
-        enemy.velocity.y = -20;
+      if (enemy.position.y + enemy.height == ground) enemy.velocity.y = -20;
       break;
     case "ArrowDown":
       enemy.attack();
