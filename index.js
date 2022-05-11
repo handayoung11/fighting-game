@@ -39,8 +39,6 @@ const player = new Fighter({
     x: 0,
     y: 0,
   },
-  imageSrc: "./img/samuraiMack/Idle.png",
-  framesMax: 8,
   scale: 2.5,
   offset: {
     x: 215,
@@ -69,6 +67,7 @@ const player = new Fighter({
     },
   },
 });
+player.switchSprite("idle");
 
 const enemy = new Fighter({
   position: {

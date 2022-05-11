@@ -54,17 +54,13 @@ class Fighter extends Sprite {
     position,
     velocity,
     color = "red",
-    imageSrc,
     scale = 1,
-    framesMax = 1,
     offset,
     sprites,
   }) {
     super({
       position,
-      imageSrc,
       scale,
-      framesMax,
       offset,
       sprites,
     });
