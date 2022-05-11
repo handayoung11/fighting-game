@@ -136,9 +136,9 @@ class Fighter extends Sprite {
     ) {
       return;
     }
-    if (player.image !== player.sprites[sprite].image) {
-      player.image = player.sprites[sprite].image;
-      player.framesMax = player.sprites[sprite].framesMax;
+    if (this.image !== this.sprites[sprite].image) {
+      this.image = this.sprites[sprite].image;
+      this.framesMax = this.sprites[sprite].framesMax;
       this.framesCurrent = 0;
     }
   }
