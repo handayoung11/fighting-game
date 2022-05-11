@@ -100,20 +100,21 @@ function animate() {
   enemy.update();
 
   //player movement
-  player.image = player.sprites.idle.image;
   if (keys.a.pressed && (player.lastKey === "a" || player.velocity.x === 0)) {
     player.velocity.x = -5;
     player.lastKey = "a";
-    player.image = player.sprites.run.image;
+    player.switchSprite("run");
   } else if (
     keys.d.pressed &&
     (player.lastKey === "d" || player.velocity.x === 0)
   ) {
     player.velocity.x = 5;
     player.lastKey = "d";
-    player.image = player.sprites.run.image;
+    player.switchSprite("run");
   } else {
     player.velocity.x = 0;
+    player.switchSprite("idle");
+  }
   }
 
   //enemy movement
