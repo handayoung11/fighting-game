@@ -66,6 +66,7 @@ class Fighter extends Sprite {
       scale,
       framesMax,
       offset,
+      sprites,
     });
     this.velocity = velocity;
     this.height = 150;
@@ -82,6 +83,12 @@ class Fighter extends Sprite {
     this.color = color;
     this.isAttacking;
     this.health = 100;
+    this.sprites = sprites;
+    
+    for (const idx in this.sprites) {
+      this.sprites[idx].image = new Image();
+      this.sprites[idx].image.src = this.sprites[idx].imageSrc;
+    }
   }
 
   // draw() {
