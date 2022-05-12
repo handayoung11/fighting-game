@@ -222,7 +222,8 @@ function animate() {
     enemy.framesCurrent === 2
   ) {
     enemy.isAttacking = false;
-    player.health -= 20;
+    player.health -= 13;
+    if (player.health < 0) player.health = 0;
     document.querySelector("#playerHealth").style.width = player.health + "%";
   }
   if (enemy.isAttacking && enemy.framesCurrent === 2) {
