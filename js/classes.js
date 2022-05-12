@@ -57,6 +57,7 @@ class Fighter extends Sprite {
     scale = 1,
     offset,
     sprites,
+    bodyOffset = {x, y},
     attackBox = { offset: {}, width, height },
   }) {
     super({
@@ -65,6 +66,7 @@ class Fighter extends Sprite {
       offset,
       sprites,
     });
+    this.bodyOffset = bodyOffset;
     this.velocity = velocity;
     this.height = 150;
     this.width = 50;

@@ -70,6 +70,10 @@ const player = new Fighter({
     width: 197.4,
     height: 50,
   },
+  bodyOffset: {
+    x: 10,
+    y: 0,
+  },
 });
 player.switchSprite("idle");
 
@@ -117,6 +121,10 @@ const enemy = new Fighter({
     },
     width: 150,
     height: 50,
+  },
+  bodyOffset: {
+    x: 10,
+    y: 0,
   },
 });
 enemy.switchSprite("idle");
