@@ -57,6 +57,7 @@ class Fighter extends Sprite {
     scale = 1,
     offset,
     sprites,
+    attackBox = { offset: {}, width, height },
   }) {
     super({
       position,
@@ -72,44 +73,35 @@ class Fighter extends Sprite {
         x: this.position.x,
         y: this.position.y,
       },
-      offset,
-      width: 100,
-      height: 50,
+      offset: attackBox.offset,
+      width: attackBox.width,
+      height: attackBox.height,
     };
     this.color = color;
     this.isAttacking;
     this.health = 100;
     this.sprites = sprites;
-    
+
     for (const idx in this.sprites) {
       this.sprites[idx].image = new Image();
       this.sprites[idx].image.src = this.sprites[idx].imageSrc;
     }
   }
 
-  // draw() {
-  //   c.fillStyle = this.color;
-  //   c.fillRect(this.position.x, this.position.y, this.width, this.height);
-
-  //   //attack box
-  //   if (this.isAttacking) {
-  //     c.fillStyle = "green";
-  //     c.fillRect(
-  //       this.attackBox.position.x,
-  //       this.attackBox.position.y,
-  //       this.attackBox.width,
-  //       this.attackBox.height,
-  //     );
-  //   }
-  // }
-
   update() {
     this.draw();
+    // draw attack box
+    // c.fillRect(
+    //   this.attackBox.position.x,
+    //   this.attackBox.position.y,
+    //   this.attackBox.width,
+    //   this.attackBox.height,
+    // );
     this.animateFrames();
     this.position.x += this.velocity.x;
     this.position.y += this.velocity.y;
     this.attackBox.position.x = this.position.x + this.attackBox.offset.x;
-    this.attackBox.position.y = this.position.y;
+    this.attackBox.position.y = this.position.y + this.attackBox.offset.y;
 
     if (this.position.y + this.height + this.velocity.y >= ground) {
       this.toEarth();
@@ -122,11 +114,10 @@ class Fighter extends Sprite {
   }
 
   attack() {
-    this.switchSprite("attack1");
-    this.isAttacking = true;
-    setTimeout(() => {
-      this.isAttacking = false;
-    }, 100);
+    if(this.image !== this.sprites.attack1.image) {
+      this.switchSprite("attack1");
+      this.isAttacking = true;
+    }
   }
 
   switchSprite(sprite) {
