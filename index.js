@@ -61,6 +61,10 @@ const player = new Fighter({
       imageSrc: "./img/samuraiMack/Attack1.png",
       framesMax: 6,
     },
+    takeHit: {
+      imageSrc: "./img/samuraiMack/Take hit - white silhouette.png",
+      framesMax: 4,
+    },
   },
   attackBox: {
     offset: {
@@ -112,6 +116,10 @@ const enemy = new Fighter({
     attack1: {
       imageSrc: "./img/kenji/Attack1.png",
       framesMax: 4,
+    },
+    takeHit: {
+      imageSrc: "./img/kenji/Take hit.png",
+      framesMax: 3,
     },
   },
   attackBox: {
@@ -204,25 +212,26 @@ function animate() {
   }
 
   if (
+    player.framesCurrent === 5 &&
     rectangluarCollision({ rec1: player, rec2: enemy }) &&
-    player.isAttacking &&
-    player.framesCurrent === 4
+    player.isAttacking
   ) {
+    enemy.takeHit();
     player.isAttacking = false;
-    enemy.health -= 20;
     document.querySelector("#enemyHealth").style.width = enemy.health + "%";
   }
-  if (player.isAttacking && player.framesCurrent === 4) {
+  if (player.isAttacking && player.framesCurrent === 5) {
     player.isAttacking = false;
   }
 
   if (
+    enemy.framesCurrent === 2 &&
     rectangluarCollision({ rec1: enemy, rec2: player }) &&
-    enemy.isAttacking &&
-    enemy.framesCurrent === 2
+    enemy.isAttacking
   ) {
+    player.takeHit();
     enemy.isAttacking = false;
-    player.health -= 13;
+    player.health += 87;
     if (player.health < 0) player.health = 0;
     document.querySelector("#playerHealth").style.width = player.health + "%";
   }

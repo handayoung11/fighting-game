@@ -57,7 +57,7 @@ class Fighter extends Sprite {
     scale = 1,
     offset,
     sprites,
-    bodyOffset = {x, y},
+    bodyOffset = { x, y },
     attackBox = { offset: {}, width, height },
   }) {
     super({
@@ -123,16 +123,31 @@ class Fighter extends Sprite {
   }
 
   switchSprite(sprite) {
+    //override when fighter gets hit
+    if (
+      (this.framesCurrent < this.sprites.takeHit.framesMax - 1 ||
+        this.framesElapsed % this.framesHold != 4) &&
+      this.image === this.sprites.takeHit.image
+    ) {
+      return;
+    }
+    // overriding all other animations with attack animation
     if (
       this.image === this.sprites.attack1.image &&
       this.framesCurrent < this.sprites.attack1.framesMax - 1
     ) {
       return;
     }
+
     if (this.image !== this.sprites[sprite].image) {
       this.image = this.sprites[sprite].image;
       this.framesMax = this.sprites[sprite].framesMax;
       this.framesCurrent = 0;
     }
+  }
+
+  takeHit() {
+    this.switchSprite("takeHit");
+    this.health -= 100;
   }
 }
