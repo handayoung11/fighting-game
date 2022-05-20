@@ -82,6 +82,7 @@ const player = new Fighter({
     x: 10,
     y: 0,
   },
+  damage: 13,
 });
 player.switchSprite("idle");
 
@@ -142,6 +143,7 @@ const enemy = new Fighter({
     x: 10,
     y: 0,
   },
+  damage: 25,
 });
 enemy.switchSprite("idle");
 
@@ -239,7 +241,6 @@ function animate() {
   ) {
     player.takeHit();
     enemy.isAttacking = false;
-    player.health += 87;
     if (player.health < 0) player.health = 0;
     document.querySelector("#playerHealth").style.width = player.health + "%";
   }
