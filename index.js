@@ -255,37 +255,43 @@ function animate() {
 animate();
 
 window.addEventListener("keydown", (event) => {
-  switch (event.key) {
-    case "a":
-      keys.a.pressed = true;
-      player.lastKey = "a";
-      break;
-    case "d":
-      keys.d.pressed = true;
-      player.lastKey = "d";
-      break;
-    case "w":
-      if (player.position.y + player.height == ground) player.velocity.y = -20;
-      break;
-
-    //enemy event
-    case "ArrowRight":
-      keys.ArrowRight.pressed = true;
-      enemy.lastKey = "ArrowRight";
-      break;
-    case "ArrowLeft":
-      keys.ArrowLeft.pressed = true;
-      enemy.lastKey = "ArrowLeft";
-      break;
-    case "ArrowUp":
-      if (enemy.position.y + enemy.height == ground) enemy.velocity.y = -20;
-      break;
-    case "ArrowDown":
-      enemy.attack();
-      break;
-    case " ":
-      player.attack();
-      break;
+  if (player.alive) {
+    switch (event.key) {
+      case "a":
+        keys.a.pressed = true;
+        player.lastKey = "a";
+        break;
+      case "d":
+        keys.d.pressed = true;
+        player.lastKey = "d";
+        break;
+      case "w":
+        if (player.position.y + player.height == ground)
+          player.velocity.y = -20;
+        break;
+    }
+  }
+  if (enemy.alive) {
+    switch (event.key) {
+      //enemy event
+      case "ArrowRight":
+        keys.ArrowRight.pressed = true;
+        enemy.lastKey = "ArrowRight";
+        break;
+      case "ArrowLeft":
+        keys.ArrowLeft.pressed = true;
+        enemy.lastKey = "ArrowLeft";
+        break;
+      case "ArrowUp":
+        if (enemy.position.y + enemy.height == ground) enemy.velocity.y = -20;
+        break;
+      case "ArrowDown":
+        enemy.attack();
+        break;
+      case " ":
+        player.attack();
+        break;
+    }
   }
 });
 
