@@ -103,7 +103,11 @@ class Fighter extends Sprite {
     //   this.attackBox.height,
     // );
     if (this.alive) this.animateFrames();
-    this.position.x += this.velocity.x;
+    const nextX = this.position.x + this.velocity.x;
+    if (nextX >= 0 && nextX <= 970) {
+      //벽설정
+      this.position.x = nextX;
+    }
     this.position.y += this.velocity.y;
     this.attackBox.position.x = this.position.x + this.attackBox.offset.x;
     this.attackBox.position.y = this.position.y + this.attackBox.offset.y;
