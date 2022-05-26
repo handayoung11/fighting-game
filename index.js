@@ -295,7 +295,7 @@ window.addEventListener("keydown", (event) => {
       case "ArrowDown":
         enemy.attack();
         break;
-      case " ":
+      case "s":
         player.attack();
         break;
     }
