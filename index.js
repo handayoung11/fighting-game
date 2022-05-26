@@ -29,7 +29,7 @@ const shop = new Sprite({
 const player = new Fighter({
   position: {
     x: 0,
-    y: 0,
+    y: 50,
   },
   velocity: {
     x: 0,
@@ -88,8 +88,8 @@ player.switchSprite("idle");
 
 const enemy = new Fighter({
   position: {
-    x: 400,
-    y: 100,
+    x: 970,
+    y: 50,
   },
   velocity: {
     x: 0,
