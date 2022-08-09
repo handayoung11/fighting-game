@@ -276,6 +276,9 @@ window.addEventListener("keydown", (event) => {
         if (player.position.y + player.height == ground)
           player.velocity.y = -20;
         break;
+      case "s":
+        player.attack();
+        break;
     }
   }
   if (enemy.alive) {
@@ -294,9 +297,6 @@ window.addEventListener("keydown", (event) => {
         break;
       case "ArrowDown":
         enemy.attack();
-        break;
-      case "s":
-        player.attack();
         break;
     }
   }
