@@ -86,6 +86,7 @@ class Fighter extends Sprite {
     this.health = 100;
     this.sprites = sprites;
     this.alive = true;
+    this.deathIsCompleted = true;
 
     for (const idx in this.sprites) {
       this.sprites[idx].image = new Image();
@@ -102,7 +103,7 @@ class Fighter extends Sprite {
     //   this.attackBox.width,
     //   this.attackBox.height,
     // );
-    if (this.alive) this.animateFrames();
+    if (this.alive || this.deathIsCompleted) this.animateFrames();
     const nextX = this.position.x + this.velocity.x;
     if (nextX >= 0 && nextX <= 970) {
       //벽설정
@@ -135,7 +136,7 @@ class Fighter extends Sprite {
   switchSprite(sprite) {
     if (this.image === this.sprites.death.image) {
       if (this.framesCurrent === this.sprites.death.framesMax - 1) {
-        this.alive = false;
+        this.deathIsCompleted = false;
       }
       return;
     }
@@ -169,7 +170,18 @@ class Fighter extends Sprite {
     this.isAttacking = false;
 
     if (this.health <= 0) {
+      this.alive = false;
       this.switchSprite("death");
+      //죽는 경우 움직임 정지
+      if (this === player) {
+        keys.a.pressed = false;
+        keys.d.pressed = false;
+      }
+      if (this === enemy) {
+        keys.ArrowLeft.pressed = false;
+        keys.ArrowRight.pressed = false;
+      }
+      this.velocity.x = 0;
     } else {
       this.switchSprite("takeHit");
     }
