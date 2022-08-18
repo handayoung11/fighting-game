@@ -39,6 +39,7 @@ const player = new Fighter({
   offset: {
     x: 215,
     y: 157,
+    body: 50,
   },
   sprites: {
     idle: {
@@ -100,6 +101,7 @@ const enemy = new Fighter({
   offset: {
     x: 215,
     y: 170,
+    body: 49,
   },
   sprites: {
     idle: {
@@ -179,12 +181,14 @@ function animate() {
     player.velocity.x = -5;
     player.lastKey = "a";
     player.switchSprite("run");
+    player.flipped = true;
   } else if (
     keys.d.pressed &&
     (player.lastKey === "d" || player.velocity.x === 0)
   ) {
     player.velocity.x = 5;
     player.lastKey = "d";
+    player.flipped = false;
     player.switchSprite("run");
   } else {
     player.velocity.x = 0;
@@ -204,6 +208,7 @@ function animate() {
   ) {
     enemy.velocity.x = -5;
     enemy.lastKey = "ArrowLeft";
+    enemy.flipped = false;
     enemy.switchSprite("run");
   } else if (
     keys.ArrowRight.pressed &&
@@ -211,6 +216,7 @@ function animate() {
   ) {
     enemy.velocity.x = 5;
     enemy.lastKey = "ArrowRight";
+    enemy.flipped = true;
     enemy.switchSprite("run");
   } else {
     enemy.velocity.x = 0;
