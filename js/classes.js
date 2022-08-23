@@ -104,6 +104,12 @@ class Fighter extends Sprite {
 
   update() {
     this.draw();
+    this.attackBox.position.y = this.position.y + this.attackBox.offset.y;
+    if (this.flipped) {
+      this.attackBox.position.x = this.position.x - this.attackBox.width - this.attackBox.offset.x + this.offset.body;
+    } else {
+      this.attackBox.position.x = this.position.x + this.attackBox.offset.x;
+    }
     // draw attack box
     // c.fillStyle = "rgba(255, 255, 255, 0.149019607843137)";
     // c.fillRect(
@@ -119,8 +125,6 @@ class Fighter extends Sprite {
       this.position.x = nextX;
     }
     this.position.y += this.velocity.y;
-    this.attackBox.position.x = this.position.x + this.attackBox.offset.x;
-    this.attackBox.position.y = this.position.y + this.attackBox.offset.y;
 
     if (this.position.y + this.height + this.velocity.y >= ground) {
       this.toEarth();
