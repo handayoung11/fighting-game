@@ -15,21 +15,29 @@ class Sprite {
     this.framesElapsed = 0;
     this.framesHold = 5;
     this.offset = offset;
+    this.flipped = false;
   }
 
   draw() {
+    if (this.flipped) {
+      c.translate(this.position.x + this.offset.x + this.offset.body, 0);
+      c.scale(-1, 1);
+    } else {
+      c.translate(this.position.x - this.offset.x, 0);
+    }
     c.drawImage(
       this.image,
       this.framesCurrent * this.renderingWidth,
       0,
       this.renderingWidth,
       this.image.height,
-      this.position.x - this.offset.x,
+      0,
       this.position.y - this.offset.y,
       this.renderingWidth * this.scale,
       this.image.height * this.scale,
     );
     this.renderingWidth = this.image.width / this.framesMax;
+    c.setTransform(1,0,0,1,0,0);
   }
 
   animateFrames() {
@@ -96,7 +104,14 @@ class Fighter extends Sprite {
 
   update() {
     this.draw();
+    this.attackBox.position.y = this.position.y + this.attackBox.offset.y;
+    if (this.flipped) {
+      this.attackBox.position.x = this.position.x - this.attackBox.width - this.attackBox.offset.x + this.offset.body;
+    } else {
+      this.attackBox.position.x = this.position.x + this.attackBox.offset.x;
+    }
     // draw attack box
+    // c.fillStyle = "rgba(255, 255, 255, 0.149019607843137)";
     // c.fillRect(
     //   this.attackBox.position.x,
     //   this.attackBox.position.y,
@@ -110,8 +125,6 @@ class Fighter extends Sprite {
       this.position.x = nextX;
     }
     this.position.y += this.velocity.y;
-    this.attackBox.position.x = this.position.x + this.attackBox.offset.x;
-    this.attackBox.position.y = this.position.y + this.attackBox.offset.y;
 
     if (this.position.y + this.height + this.velocity.y >= ground) {
       this.toEarth();
@@ -163,6 +176,10 @@ class Fighter extends Sprite {
       this.framesMax = this.sprites[sprite].framesMax;
       this.framesCurrent = 0;
     }
+
+    // if (this.image === this.sprites.run.image) {
+    //   this.flipped = true;
+    // }
   }
 
   takeHit() {
