@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "start": "node ./dist/application.js",
+    "build-dist": "./node_modules/typescript/bin/tsc",
+    "mocha": "mocha --recursive --reporter spec -r ./dist/test/bootstrap.js",
+    "test": "npm run mocha -- ./dist/test/ -r ./dist/test/integration/bootstrap.js"
+  },
+  "dependencies": {
+    "gsap": "^3.11.0",
+    "js": "^0.1.0",
+    "typescript": "^4.8.2"
+  }
+}
